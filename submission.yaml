@@ -1,3 +1,8 @@
 challenge: aido1_amod1-v3
 protocol: aido1_amod1-v3
 user-label: "Python template"
+
+description: |
+    This is a Python template for the AMOD challenge.
+
+    [The challenge is documented here](http://docs.duckietown.org/DT18/AIDO/out/task_amod.html).
