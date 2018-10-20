@@ -2,13 +2,12 @@
 
 from duckietown_challenges import wrap_solution, ChallengeSolution, ChallengeInterfaceSolution
 
-from AidoGuest import AidoGuest
-
 
 class Solver(ChallengeSolution):
     def run(self, cis):
         assert isinstance(cis, ChallengeInterfaceSolution)
 
+        from AidoGuest import AidoGuest
         hostname = "aido-host"
         aidoGuest = AidoGuest(hostname)
         aidoGuest.run()

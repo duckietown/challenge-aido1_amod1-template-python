@@ -9,8 +9,11 @@ class AidoGuest:
     """
 
     # default values for demo
+
     SCENARIO = 'SanFrancisco.20080518'
     REQUEST_NUMBER_DESIRED = 500
+
+    # decision variable
     NUMBER_OF_VEHICLES = 20
     PRINT_SCORE_PERIOD = 200
 
