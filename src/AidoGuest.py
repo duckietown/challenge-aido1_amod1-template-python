@@ -1,4 +1,6 @@
 import sys
+import time
+
 from DispatchingLogic import DispatchingLogic
 from utils.StringSocket import StringSocket
 
@@ -25,6 +27,9 @@ class AidoGuest:
 
     def run(self):
         """connect to AidoGuest"""
+        print('Guest waiting 20 s before connecting')
+        time.sleep(20)
+        print('Guest connecting to %s' % self.ip)
         stringSocket = StringSocket(self.ip)
         # send initial command, e.g., {SanFrancisco.20080518}
         stringSocket.writeln('{%s}' % self.SCENARIO)  # scenario name
