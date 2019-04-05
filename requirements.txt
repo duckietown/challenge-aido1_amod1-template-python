@@ -1,2 +1,3 @@
+six
 -e git://github.com/duckietown/duckietown-shell.git@v4#egg=duckietown-shell
 -e git://github.com/duckietown/duckietown-challenges.git@v4#egg=duckietown-challenges

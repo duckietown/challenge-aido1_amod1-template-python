@@ -1,6 +1,13 @@
-import sys
+import logging
 import time
+import six
 
+if six.PY2:
+    msg = 'Only Python 3.6+ is supported.'
+    raise Exception(msg)
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 from DispatchingLogic import DispatchingLogic
 from utils.StringSocket import StringSocket
 
@@ -24,12 +31,13 @@ class AidoGuest:
         :param ip: for instance "localhost"
         """
         self.ip = ip
+        logger.info('AidoGuest using ip = %r' % ip)
 
     def run(self):
         """connect to AidoGuest"""
-        print('Guest waiting 20 s before connecting')
-        time.sleep(20)
-        print('Guest connecting to %s' % self.ip)
+        logger.info('Guest waiting 10 s before connecting')
+        time.sleep(10)
+        logger.info('Guest connecting to %s' % self.ip)
         stringSocket = StringSocket(self.ip)
         # send initial command, e.g., {SanFrancisco.20080518}
         stringSocket.writeln('{%s}' % self.SCENARIO)  # scenario name
@@ -42,8 +50,8 @@ class AidoGuest:
 
         # chose number of Requests and fleet size
         assert self.REQUEST_NUMBER_DESIRED <= numReq
-        print("Nominal fleet size:", nominalFleetSize)
-        print("Chosen fleet size: ", self.NUMBER_OF_VEHICLES)
+        logger.info("Nominal fleet size:", nominalFleetSize)
+        logger.info("Chosen fleet size: ", self.NUMBER_OF_VEHICLES)
 
         configSize = [self.REQUEST_NUMBER_DESIRED, self.NUMBER_OF_VEHICLES]
         stringSocket.writeln(configSize)
@@ -69,16 +77,26 @@ class AidoGuest:
 
         # receive final performance score/stats
         finalScores = stringSocket.readLine()
-        print("final service quality score:  ", finalScores[1])
-        print("final efficiency score:       ", finalScores[2])
-        print("final fleet size score:       ", finalScores[3])
+        logger.info("final service quality score:  ", finalScores[1])
+        logger.info("final efficiency score:       ", finalScores[2])
+        logger.info("final fleet size score:       ", finalScores[3])
 
         stringSocket.close()
 
 
-if __name__ == '__main__':
-    try:
-        aidoGuest = AidoGuest(sys.argv[1])
-    except IndexError:
-        aidoGuest = AidoGuest()
+def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('--host', default="localhost")
+
+    parsed = parser.parse_args()
+
+    host = parsed.host
+    logger.info('Starting AidoGuest with host = %s' % host)
+    aidoGuest = AidoGuest(host)
     aidoGuest.run()
+
+
+if __name__ == '__main__':
+    main()

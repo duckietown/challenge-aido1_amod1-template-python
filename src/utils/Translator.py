@@ -1,6 +1,6 @@
 import ast
 import re
-from utils.RoboTaxiStatus import RoboTaxiStatus
+from .RoboTaxiStatus import RoboTaxiStatus
 
 
 def tensorStringToList(string):
