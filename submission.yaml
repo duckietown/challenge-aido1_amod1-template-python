@@ -1,4 +1,7 @@
-challenge: aido2_amod_service_quality_r1-v4
+challenge:
+- aido2_amod_efficiency_r1-v4
+- aido2_amod_fleet_size_r1-v4
+- aido2_amod_service_quality_r1-v4
 protocol: aido2_amod1-v4
 user-label: "Python template"
 

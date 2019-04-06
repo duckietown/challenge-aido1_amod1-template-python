@@ -5,7 +5,7 @@ from .RoboTaxiStatus import RoboTaxiStatus
 
 def tensorStringToList(string):
     """turn java tensor string representation into python list"""
-    assert isinstance(string, (str, unicode)), type(string).__name__
+
     # make string readable for ast.literal_eval
     s = re.sub(r" ?\[[^)]+\]", "", string).replace('{', '[').replace('}', ']').replace('-Infinity', "'-Infinity'")
     for status in RoboTaxiStatus.values():
