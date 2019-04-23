@@ -1,6 +1,5 @@
 challenge:
 - aido2-AMOD-efficiency
-- aido2-AMOD-fleet_size
 - aido2-AMOD-service_quality
 protocol: aido2_amod1-v4
 user-label: "Python template"
